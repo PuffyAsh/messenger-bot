@@ -36,16 +36,15 @@ url = "https://graph.facebook.com/v19.0/me/messages"
             'Content-Type': 'application/json'
         }
     data = {
-            'recipient': {'id': sender_id},
+            'recipient': {'id': recipient_id},
             'message': {'text': response_text}
         }
     params = {
             'access_token': PAGE_ACCESS_TOKEN
         }
-    response = requests.post('https://graph.facebook.com/v12.0/me/messages',
-                                 headers=headers, params=params, json=data)
-    if res.status_code != 200:
-        print("Error sending message:", res.text)
+   response = requests.post(url, headers=headers, params=params, json=data)
+    if response.status_code != 200:
+        print("Error sending message:", response.text)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

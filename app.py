@@ -31,17 +31,19 @@ def webhook():
     return "OK", 200
 
 def send_message(recipient_id, text):
-    url = f"https://graph.facebook.com/v19.0/me/messages?access_token={PAGE_ACCESS_TOKEN}"
+url = "https://graph.facebook.com/v19.0/me/messages"
     headers = {
-        "Content-Type": "application/json"
-    }
-    payload = {
-        "recipient": {"id": recipient_id},
-        "message": {"text": text},
-        "messaging_type": "RESPONSE"
-    }
-
-    res = requests.post(url, headers=headers, json=payload)
+            'Content-Type': 'application/json'
+        }
+    data = {
+            'recipient': {'id': sender_id},
+            'message': {'text': response_text}
+        }
+    params = {
+            'access_token': PAGE_ACCESS_TOKEN
+        }
+    response = requests.post('https://graph.facebook.com/v12.0/me/messages',
+                                 headers=headers, params=params, json=data)
     if res.status_code != 200:
         print("Error sending message:", res.text)
 

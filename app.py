@@ -31,7 +31,7 @@ def webhook():
     return "OK", 200
 
 def send_message(recipient_id, text):
-     url = f"https://graph.facebook.com/v19.0/me/messages?access_token={PAGE_ACCESS_TOKEN}"
+    url = f"https://graph.facebook.com/v19.0/me/messages?access_token={PAGE_ACCESS_TOKEN}"
     headers = {
         "Content-Type": "application/json"
     }
